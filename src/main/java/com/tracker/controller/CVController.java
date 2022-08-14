@@ -11,6 +11,7 @@ import com.tracker.modal.CVModel;
 import com.tracker.service.CVService;
 
 @Controller
+//@EnableScheduling // To indicate that service has schedule running method
 public class CVController 
 {
 	@Autowired
