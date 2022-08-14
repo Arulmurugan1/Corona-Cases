@@ -21,6 +21,7 @@ public class CVService
 	private static String DATA_URL ="https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
 	
 //	@PostConstruct -> To run the method on run the app without a controller
+//    @Scheduled(cron = " * 1 * * * * ") //it used to re run this method by cron= " sec minute hour day month year "
 	public List<CVModel> getVirusData() throws Exception
 	
 	{
@@ -35,7 +36,7 @@ public class CVService
 		Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(in);
 		
 		
-		for( CSVRecord n : records) {
+		records.forEach(n -> {
 			
 			CVModel s = new CVModel();
 			
@@ -44,7 +45,7 @@ public class CVService
 			s.setTotalCases( Integer.parseInt( n.get(n.size()-1) ) ) ;
 			s.setTodayRecordedCases( Integer.parseInt( n.get(n.size()-1) ) - Integer.parseInt( n.get(n.size()-2) ) ) ;
 			status.add(s);
-		}
+		});
 		  
 		  return status;
  	}
