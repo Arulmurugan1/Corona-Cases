@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+  <head>
+    <title>Corona Virus Tracker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+ 	
+  </head>
+
+  <body>
+  
+  <div class=" w-75 mx-auto mt-3">
+  <div class="jumbotron ">
+		  <h1 class="display-4">Total Reported Cases !</h1>
+		  <p  class=" ml-3 lead" th:text="${TotalCases}">         </p>
+		  <hr class="my-4">
+		  <h3>Today Reported Cases Count :  <b th:text="${TodayCases}"><b></h3>
+	</div>
+  </div>
+  
+  <table class="table table-striped w-75 mx-auto ">
+  <thead class="thead-light">
+    <tr>
+      <th>Country</th>
+      <th>State</th>
+      <th>Total Reported Cases</th>
+      <th>Today Recorded Cases</th>
+    </tr>
+  </thead>
+  <tbody class="table-hover">
+    <tr th:each="status: ${Records}">
+    
+      <td class="table-primary" th:text="${status.country}"></td>
+      <td class="table-secondary" th:text="${status.state}"></td>
+      <td class="table-success" th:text="${status.totalCases}"></td>
+      <td class="table-danger" th:text="${status.todayRecordedCases}"></td>
+    </tr>
+  </tbody>
+</table>
+    
+  </body>
+
+</html>
